@@ -4,6 +4,8 @@
 **Active phase:** Phase 1 — Financial Engine
 **Market mode:** Deterministic synthetic data only
 
+**Deployment:** Intentionally paused on 2026-09-12. The persistent bot service is disabled and the Discord guild installation was removed; source code and database state remain preserved.
+
 **Delivery target:** playable private-guild Discord stock-bot MVP first; advanced loans, margin, bankruptcy, leagues, NPC, prestige, and elaborate reporting are deferred for play-feedback-driven development.
 
 This is the implementation checkpoint for agents and maintainers. Product behavior remains authoritative in the domain specifications.

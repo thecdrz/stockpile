@@ -4,6 +4,8 @@
 **Phase:** Phase 1 — Financial Engine (synthetic-market development)
 **Implementation state:** Playable synthetic Discord MVP implemented; private-guild smoke test and real-market integration remain externally gated.
 
+**Deployment state:** Paused by owner on 2026-09-12. The `stockpile.service` system service is disabled and the bot has been removed from the Discord guild. Code and PostgreSQL data are preserved for a future restart.
+
 **Current delivery target:** a small playable private-guild Discord MVP using deterministic synthetic data. Advanced financial-life and game systems remain specified but are deferred until play feedback after the MVP is introduced to the channel.
 
 Detailed code progress and verification evidence are maintained in `docs/IMPLEMENTATION_STATUS.md`.
