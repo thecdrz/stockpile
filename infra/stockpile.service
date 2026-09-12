@@ -1,0 +1,20 @@
+[Unit]
+Description=Stockpile Discord MVP
+After=network-online.target postgresql.service
+Wants=network-online.target
+Requires=postgresql.service
+
+[Service]
+Type=simple
+User=cdrz
+Group=cdrz
+WorkingDirectory=/home/cdrz/Work/stockpile
+EnvironmentFile=/home/cdrz/Work/stockpile/.env
+ExecStart=/usr/bin/node /home/cdrz/Work/stockpile/apps/bot/dist/index.js
+Restart=on-failure
+RestartSec=5
+NoNewPrivileges=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target

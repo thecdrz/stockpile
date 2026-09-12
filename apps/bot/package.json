@@ -1,0 +1,20 @@
+{
+  "name": "@stockpile/bot",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "main": "./dist/index.js",
+  "scripts": {
+    "start": "node dist/index.js"
+  },
+  "dependencies": {
+    "@stockpile/application": "0.0.0",
+    "@stockpile/core": "0.0.0",
+    "@stockpile/database": "0.0.0",
+    "@stockpile/jobs": "0.0.0",
+    "@stockpile/ledger": "0.0.0",
+    "@stockpile/market-data": "0.0.0",
+    "discord.js": "^14.27.0",
+    "pg": "8.16.3"
+  }
+}

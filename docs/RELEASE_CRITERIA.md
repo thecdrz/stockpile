@@ -93,6 +93,7 @@ Private launch must include:
 - Monday Opening Bell
 - achievements/records required by shipped rules
 - standardized predictions/challenges if enabled for launch
+- one clearly labelled fictional NPC with deterministic predictions and trading
 
 ### Reporting
 
@@ -350,6 +351,18 @@ Must test:
 - champion record/trophy
 - next-month automatic rollover
 - duplicate rollover retry
+
+NPC-specific assertions:
+
+- NPC receives the same League capital and execution treatment as humans
+- active NPC holdings remain private until League close
+- NPC decisions cannot read private human state or future market data
+- identical policy version, inputs, and seed reproduce the same proposed action
+- duplicate decision jobs do not create duplicate predictions, orders, or wagers
+- disabling the NPC creates no new decisions and does not corrupt pending obligations
+- every NPC order and prediction retains its policy version, inputs, and structured rationale
+- NPC labels remain visible on every public and private surface
+- any enabled staked challenge is funded from NPC Career cash and reconciles as zero-sum
 
 ---
 

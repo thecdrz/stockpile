@@ -469,6 +469,8 @@ Required job capabilities:
 - job history
 - manual retry
 
+The implemented queue uses `FOR UPDATE SKIP LOCKED`, expiring worker leases, immutable attempt records, deterministic capped-exponential retry scheduling, and dead-lettering after the configured final attempt. A crashed final attempt is reaped to `DEAD` rather than remaining permanently leased.
+
 ### 10.1 Worker Responsibilities
 
 Examples:
@@ -579,6 +581,12 @@ If provider terms change incompatibly:
 
 ## 14. Trading Pipeline
 
+The synthetic Phase 1 implementation persists order acceptance, cash/share reservation, and an immutable acceptance event in one transaction. Settlement locks the order and active reservation, validates a post-acceptance observation, then atomically posts the monetary journal, security quantity entry, cost-basis projection, execution evidence, reservation consumption, order state, and immutable transition event.
+
+Domestic and USD/CAD synthetic settlement are implemented. Cross-currency execution requires a trustworthy post-order FX observation, applies the versioned spread, and persists the foreign notional, rate, timestamps, reference, and spread alongside the execution.
+
+Synthetic exchange calendars are explicit fixture data rather than weekday approximations. Order acceptance and dividend entitlement fail closed when the required future or prior session is absent; holiday, early-close, and daylight-saving behavior therefore remains deterministic and provider-adapter compatible.
+
 Conceptual market-buy lifecycle:
 
 ```text
@@ -624,6 +632,10 @@ This prevents:
 > money changed, but the event that should trigger follow-up disappeared because the process crashed.
 
 Outbox consumers are idempotent.
+
+The initial outbox is destination-scoped and uses the same lease/retry/dead-letter pattern as durable jobs. Trade settlement inserts `TradeExecuted` into the outbox before its database transaction commits, so a committed trade cannot lose its downstream Discord event.
+
+The delivery boundary is transport-neutral: a leased outbox event and its stable idempotency key are passed to a destination adapter. Delivery success, retry, lease expiry, and final dead-letter state remain durable even if the Discord process restarts.
 
 ---
 
@@ -977,12 +989,29 @@ Rules:
 - never casually drop financial-history columns/tables
 - destructive changes require backup/verification
 - large projection changes can rebuild from ledger
+- the migration runner holds a PostgreSQL advisory lock so only one process migrates at a time
+- each migration is applied in its own transaction and recorded with a SHA-256 checksum
+- changing the contents of an already-applied migration is a startup/deployment error
 
 Schema migration and economy-rules changes are distinct concepts.
 
 ---
 
 ## 30. Simulation Harness
+
+The production NPC and test players are separate concepts. Fake players in the simulation harness may use adversarial or random strategies. The production NPC uses a versioned strategy policy through ordinary application services and has no direct ledger, database, provider, or Discord-message mutation path.
+
+For every NPC decision, persist:
+
+- NPC identity and environment
+- strategy policy identifier/version
+- decision timestamp and effective market timestamp
+- normalized input snapshot or immutable references to it
+- eligible action set
+- selected action, sizing, and structured reason codes
+- stable decision/idempotency key
+
+Replaying the same policy version against the same normalized inputs and seed must yield the same proposed action. Execution remains the responsibility of the normal order and settlement pipeline.
 
 `packages/testing` should support accelerated game time.
 

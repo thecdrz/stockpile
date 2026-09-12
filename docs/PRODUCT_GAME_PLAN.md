@@ -875,6 +875,29 @@ Prediction systems must remain secondary to the financial-life simulation.
 
 Stockpile should not devolve into a casino game.
 
+## 29A. Fictional NPC Player
+
+Stockpile includes one clearly labelled fictional NPC who plays alongside the initial 1–3 human players. The NPC exists to create activity, rivalry, predictions, and Weekly Wrap material; it must never impersonate a real Discord member.
+
+The NPC:
+
+- receives ordinary Career and League accounts under the same accounting rules as humans
+- makes no-stake predictions and may accept or create eligible fictional-cash challenges
+- places logical fictional trades from a versioned, deterministic strategy policy
+- uses only market observations and public game state available at the decision timestamp
+- cannot inspect private human holdings, pending orders, watchlists, or future fixture data
+- records a machine-readable decision rationale and policy version for every prediction and order
+- is subject to the same price, reservation, execution, risk, league, bankruptcy, and recovery rules as a human player
+- is visibly marked as fictional in profiles, standings, challenges, and reports
+
+At initial launch the NPC does not use gifts, player lending, system loans, or margin. Those interactions may be enabled later only after their anti-collusion and economy effects are specified and tested.
+
+The initial policy acts at most once per trading day after an eligible market observation. It is long-only across supported US/Canadian stocks and broad ETFs, combines moderate momentum with simple value/quality signals, holds 4–8 positions, limits a position to 25% of portfolio value, and retains at least 10% cash. It makes no-stake predictions; staked NPC challenges are deferred. The NPC appears in ordinary standings, while human championships and human-facing awards are recorded separately.
+
+The strategy engine, not an LLM, decides predictions, orders, sizing, or timing. Optional generated banter may describe an already-finalized decision, but it cannot change or trigger financial state. A deterministic template fallback is always available.
+
+NPC participation is environment-configurable and pausable. Pausing prevents new decisions but does not erase or silently unwind existing positions, orders, predictions, or obligations.
+
 ---
 
 # 30. Personality

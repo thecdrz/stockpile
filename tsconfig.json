@@ -1,0 +1,12 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./packages/application" },
+    { "path": "./packages/core" },
+    { "path": "./packages/database" },
+    { "path": "./packages/jobs" },
+    { "path": "./packages/ledger" },
+    { "path": "./packages/market-data" },
+    { "path": "./apps/bot" }
+  ]
+}

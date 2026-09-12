@@ -343,6 +343,8 @@ realized_gain_loss = net_sale_proceeds - cost_removed
 remaining_cost = old_total_cost - cost_removed
 ```
 
+Cost-basis allocations round to the ledger money scale using decimal round-half-to-even. A sale of the entire remaining quantity removes the entire remaining cost basis exactly so rounding dust cannot strand value. The rounding policy is versioned with the economy ruleset.
+
 ### 10.3 Split
 
 A pure split changes quantity but not aggregate remaining cost basis.

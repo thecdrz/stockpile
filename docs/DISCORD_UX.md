@@ -921,6 +921,14 @@ At month-end:
 - career trophy/records update
 - next league starts automatically according to scheduler rules
 
+### 17.4 Fictional NPC Presentation
+
+The NPC appears in the same social surfaces as players but is always labelled **NPC** or **Fictional player**. It must not use a Discord display name/avatar presentation that could reasonably be mistaken for a human member.
+
+NPC prediction and trade cards may show a concise, human-readable rationale such as strategy signal, risk limit, and information timestamp. Active League holding privacy applies equally to the NPC; its private portfolio is not exposed early merely because its decisions are automated.
+
+NPC banter is opt-in, rate-limited, and subordinate to the normal notification policy. Deterministic copy is the baseline; generated flavour may only narrate an already-recorded action and must be safe to omit or regenerate.
+
 ---
 
 ## 18. Reports UX

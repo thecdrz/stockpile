@@ -1,6 +1,6 @@
 # Stockpile Market Data Specification
 
-**Status:** Draft; provider selection remains gated on licensing confirmation  
+**Status:** Synthetic provider contract frozen; production provider selection remains gated on licensing confirmation
 **Version:** 0.1  
 **Scope:** Security universe, provider abstraction, quote freshness, execution pricing, FX, calendars, dividends, corporate actions, outages, data retention, and provider-selection criteria.
 
@@ -601,6 +601,8 @@ If an exchange ratio is supplied:
 
 Cash + stock actions apply both components.
 
+The normalized action must include the percentage of the old aggregate cost basis allocated to replacement stock. The remaining basis is allocated to cash consideration. If this allocation is absent or contradictory, the terms are incomplete and the action enters `CORPORATE_ACTION_REVIEW`; Stockpile does not invent a tax-style allocation.
+
 ### 20.4 Incomplete Terms
 
 If provider data identifies a merger/acquisition but lacks trustworthy settlement terms:
@@ -1004,6 +1006,14 @@ Before implementation reaches provider-specific production integration:
 5. Mark the Phase 0 provider-selection decision complete.
 
 Until then, development may use mocks/fixtures and a provider adapter, but production data integration is not considered frozen.
+
+### 34.1 Synthetic Development Mode
+
+Phase 1 uses deterministic, explicitly fictional securities, observations, FX rates, calendars, and corporate actions produced by the normalized provider contract. Synthetic symbols and presentation must not be confused with licensed real-market observations. No external market endpoint may be added merely because it is free to access; its display, derivation, and retention rights must still pass the production licensing gate.
+
+Synthetic scenarios must include CAD- and USD-denominated instruments and reproduce the timestamp, delay, stale-data, halt, gap, dividend, and split semantics required of a future production adapter.
+
+For deterministic synthetic tick observations, the normalized observation price is the execution price. Limit orders execute only when that observation crosses the limit. This synthetic rule is versioned and does not preselect the execution field for a future licensed quote/trade/bar feed.
 
 ---
 

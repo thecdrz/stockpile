@@ -1106,6 +1106,24 @@ They do not inject large cash prizes into the Career Account.
 
 Optional small cosmetic/prestige rewards may be defined later.
 
+### 21.6 Fictional NPC Economy
+
+One environment-owned, clearly labelled NPC may participate in Career play and the monthly League. Its cash, positions, orders, predictions, and challenge escrow use the same authoritative ledger and quantity subledger as human accounts; the NPC is not a privileged house account.
+
+Initial NPC constraints:
+
+- the same starting capital, trade rules, execution prices, League scoring, and bankruptcy/recovery rules as humans
+- no gifts, player loans, system loans, or margin
+- no administrative top-ups or loss forgiveness outside rules that also apply to humans
+- no-stake predictions are allowed
+- staked challenges, if enabled, must be funded entirely from available NPC Career cash and obey ordinary wager caps and distress restrictions
+- an environment feature flag may disable new NPC decisions without rewriting its history
+- decisions occur at most once per trading day
+- the portfolio holds 4–8 long positions, no position exceeds 25% of portfolio value, and at least 10% remains cash after a proposed buy
+- staked challenges are disabled initially
+
+NPC performance counts in standings. Championships and human-facing awards are also calculated among human participants separately, so an NPC cannot deprive a human of the corresponding career record. The UI must not imply that an NPC championship or wager transfers value to or from the system.
+
 ---
 
 ## 22. Benchmarks

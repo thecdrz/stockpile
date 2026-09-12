@@ -2,15 +2,15 @@
 
 This repository is intentionally specification-first.
 
-Before changing code or project structure, read this file and `docs/CURRENT_STATUS.md`.
+Before changing code or project structure, read this file, `docs/CURRENT_STATUS.md`, and `docs/IMPLEMENTATION_STATUS.md`.
 
 ## Current phase
 
-Stockpile is in **Phase 0 — Specification Freeze**.
+Stockpile is in **Phase 1 — Financial Engine (synthetic-market development)**.
 
-All core design/specification documents are present. One external blocker remains: production market-data provider/licensing selection (GitHub Issue #2).
+The core specification freeze is closed for synthetic-market development. Production market-data provider/licensing selection (GitHub Issue #2) remains open and blocks real-market integration and launch, not implementation against synthetic fixtures.
 
-**Do not begin production feature implementation unless the task explicitly resolves the provider blocker or the repository has been updated to show Phase 0 closed.**
+Implementation must use the normalized market-data contract with synthetic or license-safe fixtures. Do not connect, scrape, or redistribute real market data until Issue #2 is resolved with an acceptable license.
 
 There is intentionally no production application scaffold yet.
 
@@ -30,16 +30,17 @@ Initial audience: approximately 2–5 friends in one private Discord guild.
 
 1. `README.md`
 2. `docs/CURRENT_STATUS.md`
-3. GitHub Issue #1 — Phase 0 specification freeze
-4. GitHub Issue #2 — licensed market-data provider blocker
-5. `docs/PRODUCT_GAME_PLAN.md`
-6. `docs/ECONOMY_SPEC.md`
-7. `docs/DISCORD_UX.md`
-8. `docs/MARKET_DATA_SPEC.md`
-9. `docs/FINANCIAL_LEDGER.md`
-10. `docs/EDGE_CASES.md`
-11. `docs/ARCHITECTURE.md`
-12. `docs/RELEASE_CRITERIA.md`
+3. `docs/IMPLEMENTATION_STATUS.md`
+4. GitHub Issue #1 — Phase 0 specification freeze
+5. GitHub Issue #2 — licensed market-data provider blocker
+6. `docs/PRODUCT_GAME_PLAN.md`
+7. `docs/ECONOMY_SPEC.md`
+8. `docs/DISCORD_UX.md`
+9. `docs/MARKET_DATA_SPEC.md`
+10. `docs/FINANCIAL_LEDGER.md`
+11. `docs/EDGE_CASES.md`
+12. `docs/ARCHITECTURE.md`
+13. `docs/RELEASE_CRITERIA.md`
 
 More-specific specs override tentative language in the older product plan.
 
@@ -91,9 +92,9 @@ Never:
 
 Corrections should be compensating entries, not destructive history edits.
 
-## Market-data blocker
+## Market-data production blocker
 
-Before implementation begins, Issue #2 must identify an exact provider and plan/license that permits Stockpile's use.
+Before real-market integration or launch, Issue #2 must identify an exact provider and plan/license that permits Stockpile's use.
 
 Do not solve this by:
 
@@ -160,9 +161,9 @@ Follow `docs/RELEASE_CRITERIA.md`.
 
 Implementation work should include tests for every new financial invariant and failure mode. Long-running simulation, restart/retry behavior, reconciliation, provider failure, and backup/restore matter as much as happy-path UI tests.
 
-## Development workflow after Phase 0
+## Development workflow
 
-Once Phase 0 is explicitly closed, implementation should proceed broadly in this order:
+Implementation should proceed broadly in this order:
 
 1. Financial Engine
 2. Financial Life
@@ -185,4 +186,4 @@ Do not jump directly to a flashy Discord dashboard while the ledger/trading inva
 
 ## Immediate handoff task
 
-Unless explicitly told otherwise, an agent receiving this repository today should work on **Issue #2 — market-data provider/licensing selection**, not start feature implementation.
+Unless explicitly told otherwise, an agent receiving this repository today should continue **Phase 1 — Financial Engine** using synthetic market data. Real-provider work remains blocked by Issue #2.

@@ -10,6 +10,14 @@ The general rule is:
 
 > When Stockpile cannot prove that a financial mutation is safe and deterministic, fail closed and preserve player state.
 
+### Fictional NPC General Rule
+
+The production NPC never bypasses player-facing financial rules. If required market inputs are missing, stale, contradictory, or not available as of the decision timestamp, it takes no action. A retry uses a new eligible observation and cannot backdate a decision.
+
+Duplicate scheduler delivery must resolve to the same NPC decision idempotency key. Disabling the NPC stops new decisions while leaving existing orders and obligations to resolve under their ordinary rules. A strategy-policy change applies prospectively and preserves the version and rationale of historical decisions.
+
+The NPC cannot use private player state as a trading signal. Any accidental private-state access is an authorization/invariant failure: reject the decision, post no order or wager, and alert operations.
+
 ---
 
 ## 1. Classification

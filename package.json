@@ -1,0 +1,30 @@
+{
+  "name": "stockpile",
+  "private": true,
+  "version": "0.0.0",
+  "description": "A persistent multiplayer financial-life simulator for Discord",
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "tsc -b",
+    "check": "tsc -b --pretty false",
+    "bot:start": "npm run build && node --env-file=.env apps/bot/dist/index.js",
+    "db:setup": "node --env-file=.env tools/setup-database.mjs",
+    "db:migrate": "npm run build && node --env-file-if-exists=.env packages/database/dist/migrate-cli.js",
+    "db:smoke:mvp": "npm run build && node tools/smoke-mvp.mjs",
+    "test": "vitest run",
+    "test:watch": "vitest"
+  },
+  "devDependencies": {
+    "@types/node": "22.20.2",
+    "@types/pg": "8.23.1",
+    "typescript": "7.0.2",
+    "vitest": "5.0.0"
+  }
+}

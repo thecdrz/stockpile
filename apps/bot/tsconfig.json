@@ -1,0 +1,17 @@
+{
+  "extends": "../../tsconfig.base.json",
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist",
+    "tsBuildInfoFile": "dist/.tsbuildinfo"
+  },
+  "references": [
+    { "path": "../../packages/core" },
+    { "path": "../../packages/ledger" },
+    { "path": "../../packages/market-data" },
+    { "path": "../../packages/database" },
+    { "path": "../../packages/jobs" },
+    { "path": "../../packages/application" }
+  ],
+  "include": ["src/**/*.ts"]
+}

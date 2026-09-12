@@ -1,8 +1,12 @@
 # Stockpile — Current Status
 
 **As of:** 2026-09-12  
-**Phase:** Phase 0 — Specification Freeze  
-**Implementation state:** No production application code has been started intentionally.
+**Phase:** Phase 1 — Financial Engine (synthetic-market development)
+**Implementation state:** Playable synthetic Discord MVP implemented; private-guild smoke test and real-market integration remain externally gated.
+
+**Current delivery target:** a small playable private-guild Discord MVP using deterministic synthetic data. Advanced financial-life and game systems remain specified but are deferred until play feedback after the MVP is introduced to the channel.
+
+Detailed code progress and verification evidence are maintained in `docs/IMPLEMENTATION_STATUS.md`.
 
 This file is the authoritative short-form project status for handoff. It exists so an agent can understand where Stockpile stands without access to the originating ChatGPT conversation.
 
@@ -23,7 +27,7 @@ Completed specification documents:
 - `ARCHITECTURE.md`
 - `RELEASE_CRITERIA.md`
 
-**One Phase 0 blocker remains:** choose a production market-data provider/plan whose license explicitly permits Stockpile's intended private multi-user Discord display and data-retention behavior.
+The specification freeze is closed for implementation using synthetic market data. A production provider/license must still be selected before any real-market integration or launch.
 
 Tracking issues:
 
@@ -45,6 +49,8 @@ Core premise:
 Players use fictional money to buy and sell real US and Canadian stocks and ETFs. Real market behavior powers a persistent social game involving portfolios, competition, loans, credit, leverage, financial distress, bankruptcy, recovery, prestige, achievements, reports, and long-term career history.
 
 It is designed first for one private Discord server containing approximately 2–5 friends.
+
+The initial game includes one clearly labelled fictional NPC participant so a group of 1–3 humans still has an active rival. The NPC makes deterministic, explainable fictional predictions and trades through the same financial rules and ledger as humans; it is never presented as a real Discord member.
 
 The project is intentionally not a real brokerage, financial-advice product, tax simulator, or exact legal/financial simulation.
 
@@ -266,7 +272,7 @@ Architecture principles:
 - no Redis/Kubernetes/LLM dependency required for initial deployment
 - structured logs, health checks, backups, and reconciliation
 
-No application scaffolding has been created yet because Phase 0 has not formally closed.
+Application scaffolding and financial-engine work may now proceed against the normalized synthetic provider.
 
 ---
 
@@ -390,19 +396,20 @@ If documents conflict, prefer the more-specific specification over the older gen
 
 ## 14. Next Action
 
-Do not start Phase 1 by default.
+The immediate implementation task is:
 
-The immediate task is:
+> **Build Phase 1 against deterministic synthetic market data while keeping all real-provider code and data disabled.**
 
-> **Resolve Issue #2: select and document a market-data provider/license that legally and technically satisfies Stockpile's requirements.**
-
-Once that is resolved:
+For real-market integration:
 
 1. update `MARKET_DATA_SPEC.md` with the chosen provider/plan assumptions;
 2. mark provider selection complete in Issue #1;
 3. close Issue #2;
-4. close Phase 0 / Issue #1;
-5. begin Phase 1 implementation from the financial engine outward.
+4. enable and certify the provider adapter only after those gates pass.
+
+Issue #1 has been explicitly relaxed by the project owner for synthetic-market implementation. Issue #2 remains a hard gate for real data and launch.
+
+The fictional NPC defaults are approved: one clearly disclosed fictional persona; once-daily decisions; long-only US/Canadian stocks and broad ETFs; a moderate momentum/value-quality policy; 4–8 positions; 25% maximum per position; at least 10% cash; no loans, gifts, margin, or system borrowing initially; no-stake predictions initially; staked challenges deferred; standings include the NPC while human championships/awards are tracked separately; deterministic versioned decisions with stored inputs, reason codes, and seed; administrator pause control; optional post-decision banter only.
 
 ---
 
@@ -410,6 +417,6 @@ Once that is resolved:
 
 `PRODUCT_GAME_PLAN.md` is the original v0.1 design document. Some of its final "Remaining Decisions" language predates the detailed Phase 0 specs.
 
-Those decisions have now been resolved except for production market-data provider/licensing selection.
+Those decisions are resolved. Production market-data provider/licensing selection remains open, but no longer blocks synthetic-market implementation.
 
 For current state, use this file plus Issue #1. For implementation behavior, use the domain-specific specs.
